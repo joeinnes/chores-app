@@ -3,7 +3,10 @@ const User = require('../models/User.model.js');
 // Create and Save a new User
 exports.create = (req, res) => {
   User.create({ firstName: req.query.fName, lastName: req.query.lName})
-  res.sendStatus(200)
+  .then(data => {
+    res.sendStatus(200)
+  })
+  .catch(e => res.status(500).send(e))
 }
 
 // Retrieve and return all users from the database.
@@ -15,13 +18,16 @@ exports.findAll = (req, res) => {
     })
     res.send(dbUsers) // sends dbUsers back to the page
   })
+  .catch(e => res.status(500).send(e))
 }
 
 // Find a single user with a userId
 exports.findOne = (req, res) => {
-  User.findById(req.params.userId).then(user => {
-    res.send(user)
-  })
+  User.findById(req.params.userId)
+    .then(user => {
+      res.send(user)
+    })
+    .catch(e => res.status(500).send(e))
 }
 
 // Update a user identified by the userId in the request
