@@ -1,5 +1,5 @@
 {
-  "name": "Chores App",
+  "name": "chores-app",
   "version": "0.0.1",
   "description": "App for managing household chores",
   "main": "server.js",
@@ -10,7 +10,10 @@
     "express": "^4.16.3",
     "sqlite3": "^4.0.2",
     "sequelize": "^4.38.0",
-    "express-busboy": "^7.0.0"
+    "express-busboy": "^7.0.0",
+    "passport-google-oauth": "^1.0.0",
+    "passport": "^0.4.0",
+    "express-session": "^1.15.6"
   },
   "keywords": [
     "node",

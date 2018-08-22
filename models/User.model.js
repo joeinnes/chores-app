@@ -10,6 +10,9 @@ const User = db.define('users', {
   },
   image: {
     type: Sequelize.STRING
+  },
+  googleId: {
+    type: Sequelize.STRING
   }
 })
 

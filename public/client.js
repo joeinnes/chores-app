@@ -26,7 +26,7 @@ $(function() {
     })
   })
   
-    $('#clickForUser2').click((e) => {
+  $('#clickForUser2').click((e) => {
     $.get('/userchores/2', (chores) => {
       $('ul#chores').html('')
       chores.forEach(async function(chore) {
@@ -36,10 +36,15 @@ $(function() {
     })
   })
   
-  $.ajax({
-    url: '/chore/2',
-    type: 'DELETE'
-  }).then(res => console.log(res))
+  $.get('/whoami').then(data => {
+    if (data) {
+      $('#user').html(`Hi ${data.firstName} <a href="/logout">Logout</a>`)
+    } else {
+      $('#user').html(`<a href="/auth/google">Sign In with Google</a>`)
+    }
+  })
+  
+  $.post('/chorecompletion', {choreId: 1, date: new Date(2018, 11, 25)})
   
   /* $.post('/chore', {
     task: "Test adding a new task",
@@ -75,6 +80,7 @@ async function choreEl (chore) {
       - ${diff}
       - Points avail = ${pointsAv}
       - Is due? ${diff > chore.freq - 2 || isNaN(diff)}
+      - <a class="markcomplete" id=${chore.id}> Mark complete</a>
     </li>
   `
 }

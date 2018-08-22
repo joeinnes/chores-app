@@ -3,8 +3,13 @@ const Sequelize = require('sequelize')
 
 // Create and Save a new User
 exports.create = (req, res) => {
-  // Chore.create({ firstName: req.query.fName, lastName: req.query.lName})
-  res.sendStatus(202)
+  ChoreCompletion.create({
+    choreId: req.body.choreId,
+    userId: req.body.userId || req.user.id,
+    date: req.body.date || new Date()
+  })
+  .then(result => res.sendStatus(200))
+  .catch(e => res.status(500).send(e))
 }
 
 // Retrieve and return all users from the database.

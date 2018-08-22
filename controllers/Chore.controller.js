@@ -35,7 +35,7 @@ exports.findByUser = (req, res) => {
       userId: req.params.userId
     },
     include: [User]
-  }).then((chores) => {
+  }).then(chores => {
     chores.forEach((chore) => {
       dbChores.push(chore)
     })
